@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import React from "react";
 import Toast from 'react-native-toast-message';
-import { TasksProvider } from './hooks/useTasks';
+import { TasksProvider } from '@/hooks/useTasks';
 
 export default function RootLayout() {
   return (

@@ -1,17 +1,18 @@
-import { SafeAreaView,
+import { Feather } from "@expo/vector-icons";
+import { router, useLocalSearchParams } from "expo-router";
+import {
+    SafeAreaView,
+    ScrollView,
     StatusBar,
     Text,
-    View,
-    ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    View
 } from "react-native";
-import styles from "./styles/styles";
-import { Colors } from "./constants/colors";
-import TasksList from "./components/TasksList";
-import { Feather } from "@expo/vector-icons";
-import { Link, router, useLocalSearchParams } from "expo-router";
-import { TaskStatus } from "./enums/task-status";
-import { useTasks } from "./hooks/useTasks";
+import TasksList from "@/components/TasksList";
+import { Colors } from "@/constants/colors";
+import { TaskStatus } from "@/enums/task-status";
+import { useTasks } from "@/hooks/useTasks";
+import styles from "@/styles/styles";
 
 export default function Tasks() {
     const { status } = useLocalSearchParams();

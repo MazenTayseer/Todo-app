@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-import { sampleTasks, Task } from "../data/task";
-import { TaskStatus } from "../enums/task-status";
+import { Task } from "@/data/task";
+import { TaskStatus } from "@/enums/task-status";
 
 interface TasksContextType {
     tasks: Task[];
@@ -20,7 +20,7 @@ interface TasksProviderProps {
 }
 
 export const TasksProvider = ({ children }: TasksProviderProps) => {
-    const [tasks, setTasks] = useState<Task[]>(sampleTasks);
+    const [tasks, setTasks] = useState<Task[]>([]);
 
     const getTasksByStatus = (status: TaskStatus) => {
         return tasks.filter(task => task.status === status);

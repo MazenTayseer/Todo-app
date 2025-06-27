@@ -1,3 +1,11 @@
+import CustomButton from '@/components/CustomButton';
+import StatusCard from '@/components/StatusCard';
+import TasksList from '@/components/TasksList';
+import { Colors } from '@/constants/colors';
+import { UserData } from '@/data/user-data';
+import { TaskStatus } from '@/enums/task-status';
+import { useTasks } from '@/hooks/useTasks';
+import styles from "@/styles/styles";
 import { router } from 'expo-router';
 import {
     SafeAreaView,
@@ -6,14 +14,6 @@ import {
     Text,
     View,
 } from "react-native";
-import CustomButton from './components/CustomButton';
-import StatusCard from './components/StatusCard';
-import TasksList from './components/TasksList';
-import { Colors } from './constants/colors';
-import { UserData } from './data/user-data';
-import { TaskStatus } from './enums/task-status';
-import { useTasks } from './hooks/useTasks';
-import styles from "./styles/styles";
 
 
 export default function Index() {

@@ -1,8 +1,8 @@
+import { Colors } from "@/constants/colors";
+import { Task } from "@/data/task";
+import styles from "@/styles/styles";
 import { Feather } from "@expo/vector-icons";
 import { Text, View } from "react-native";
-import { Colors } from "../constants/colors";
-import { Task } from "../data/task";
-import styles from "../styles/styles";
 import TaskCard from "./TaskCard";
 
 type TasksProps = {

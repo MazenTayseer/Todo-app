@@ -1,5 +1,10 @@
+import CustomButton from '@/components/CustomButton';
+import { Colors } from '@/constants/colors';
+import { useTasks } from '@/hooks/useTasks';
+import styles from "@/styles/styles";
+import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
     Alert,
     SafeAreaView,
@@ -11,11 +16,6 @@ import {
     View,
 } from "react-native";
 import Toast from 'react-native-toast-message';
-import CustomButton from './components/CustomButton';
-import { Colors } from './constants/colors';
-import { useTasks } from './hooks/useTasks';
-import styles from "./styles/styles";
-import { Feather } from '@expo/vector-icons';
 
 export default function AddTask() {
     const [title, setTitle] = useState('');

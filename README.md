@@ -1,50 +1,92 @@
-# Welcome to your Expo app 👋
+# Todo App 📝
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern, feature-rich todo application built with React Native and Expo. This app helps you manage your daily tasks with an intuitive interface and seamless user experience.
 
-## Get started
+## 🚀 Features
 
-1. Install dependencies
+### Core Functionality
+- **Task Management**: Create, view, and manage tasks with titles and descriptions
+- **Status Tracking**: Track task progress with "In Progress" and "Completed" statuses
+- **Task Actions**: Mark tasks as complete/incomplete and delete tasks
+- **Smart Sorting**: Tasks are automatically sorted by last updated time
+- **Status Overview**: Dashboard cards showing task counts by status
 
+### User Experience
+- **Personalized Greeting**: Welcome message with user name
+- **Form Validation**: Input validation with helpful error messages
+- **Toast Notifications**: Success feedback when tasks are created
+- **Responsive Design**: Clean, modern UI that works across devices
+- **Navigation**: Smooth navigation between screens with back button support
+
+## 🛠 Setup Instructions
+
+### Prerequisites
+- **Node.js**
+- **npm**
+- **Expo CLI**
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/MazenTayseer/Todo-app.git
+   cd todo-app
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. Start the app
-
+3. **Start the development server**
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## 📱 How to Use
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. **Home Screen**: View your task overview with status cards and recent tasks
+2. **Add Task**: Tap the "Add Task" button to create a new task
+3. **Fill Details**: Enter a title and description for your task
+4. **Manage Tasks**: Use the task cards to mark tasks as complete or delete them
+5. **Track Progress**: Monitor your progress with the status overview cards
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📚 Third-Party Libraries
 
-## Get a fresh project
+### UI & User Experience
+- **@expo/vector-icons (^14.1.0)**: Comprehensive icon library for Expo
+- **react-native-toast-message (^2.3.1)**: Toast notifications for user feedback
+- **react-native-gesture-handler**: For a swipeable component, for deleting tasks
 
-When you're ready, run:
+### Utilities & Data Management
+- **uuid (^11.1.0)**: Generate unique identifiers for tasks
+- **react-native-get-random-values (^1.11.0)**: Polyfill for crypto.getRandomValues (required by uuid)
 
-```bash
-npm run reset-project
+## 📁 Project Structure
+
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+todo-app/
+├── app/                     # Routes only (Expo Router)
+│   ├── _layout.tsx         # Root layout
+│   ├── index.tsx           # Home screen
+│   ├── add-task.tsx        # Add task screen
+│   └── tasks.tsx           # Tasks list screen
+├── components/             # Reusable UI components
+│   ├── CustomButton.tsx
+│   ├── StatusCard.tsx
+│   ├── TaskCard.tsx
+│   └── TasksList.tsx
+├── hooks/                  # Custom React hooks
+│   └── useTasks.ts
+├── constants/              # App constants
+│   └── colors.ts
+├── data/                   # Data models and types
+│   ├── task.ts
+│   └── user-data.ts
+├── enums/                  # TypeScript enums
+│   └── task-status.ts
+├── styles/                 # Styling definitions
+│   └── styles.ts
+├── package.json
+└── README.md
+```
