@@ -52,30 +52,9 @@ export default function TaskCard({
     );
   }
 
-  const renderLeftActions = (prog: SharedValue<number>, drag: SharedValue<number>) => {
-    const styleAnimation = useAnimatedStyle(() => {  
-      return {
-        transform: [{ translateX: drag.value - 60 }],
-      };
-    });
-  
-    return (
-      <Reanimated.View style={styleAnimation}>
-        <TouchableOpacity 
-          style={styles.completeActionContainer}
-          onPress={() => toggleTaskStatus(task.id, TaskStatus.COMPLETED)}
-          activeOpacity={0.7}
-        >
-          <Feather name="check-circle" size={24} color={Colors.base} />
-        </TouchableOpacity>
-      </Reanimated.View>
-    );
-  }
-
   return (
     <GestureHandlerRootView>
       <ReanimatedSwipeable
-        renderLeftActions={renderLeftActions}
         renderRightActions={renderRightActions}
         overshootLeft={false}
         overshootRight={false}

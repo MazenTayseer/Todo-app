@@ -38,7 +38,7 @@ export default function AddTask() {
 
         createTask(trimmedTitle, trimmedDescription);
         
-        router.replace('/');
+        router.back();
         Toast.show({
             text1: 'Task Added ✅',
             type: 'success',
