@@ -1,7 +1,7 @@
 import CustomButton from '@/components/CustomButton';
 import { Colors } from '@/constants/colors';
 import { useTasks } from '@/hooks/useTasks';
-import styles from "@/styles/styles";
+import styles from "@/styles/global";
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';

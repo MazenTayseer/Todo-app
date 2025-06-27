@@ -5,7 +5,7 @@ import { Colors } from '@/constants/colors';
 import { UserData } from '@/data/user-data';
 import { TaskStatus } from '@/enums/task-status';
 import { useTasks } from '@/hooks/useTasks';
-import styles from "@/styles/styles";
+import styles from "@/styles/global";
 import { router } from 'expo-router';
 import {
     SafeAreaView,

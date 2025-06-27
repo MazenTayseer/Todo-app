@@ -1,7 +1,7 @@
+import { Colors } from "@/constants/colors";
+import styles from "@/styles/global";
 import { Feather } from "@expo/vector-icons";
 import { Text, TouchableOpacity } from "react-native";
-import { Colors } from "@/constants/colors";
-import styles from "@/styles/styles";
 
 type CustomButtonProps = {
     title?: string;

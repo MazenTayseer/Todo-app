@@ -1,6 +1,6 @@
 import { Colors } from "@/constants/colors";
 import { Task } from "@/data/task";
-import styles from "@/styles/styles";
+import styles from "@/styles/global";
 import { Feather } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 import TaskCard from "./TaskCard";

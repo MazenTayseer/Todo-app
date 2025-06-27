@@ -2,14 +2,14 @@ import { Colors } from "@/constants/colors";
 import { Task } from "@/data/task";
 import { TaskStatus } from "@/enums/task-status";
 import { useTasks } from "@/hooks/useTasks";
-import styles from "@/styles/styles";
+import styles from "@/styles/global";
 import { Feather } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import Reanimated, {
-  SharedValue,
-  useAnimatedStyle,
+    SharedValue,
+    useAnimatedStyle,
 } from 'react-native-reanimated';
 import Toast from "react-native-toast-message";
 

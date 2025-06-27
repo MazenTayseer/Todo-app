@@ -1,10 +1,10 @@
+import { Colors } from '@/constants/colors';
+import { TaskStatus } from '@/enums/task-status';
+import styles from '@/styles/global';
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { Colors } from '@/constants/colors';
-import { TaskStatus } from '@/enums/task-status';
-import styles from '@/styles/styles';
 
 type StatusCardProps = {
   status: TaskStatus;

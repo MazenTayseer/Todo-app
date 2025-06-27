@@ -1,3 +1,8 @@
+import TasksList from "@/components/TasksList";
+import { Colors } from "@/constants/colors";
+import { TaskStatus } from "@/enums/task-status";
+import { useTasks } from "@/hooks/useTasks";
+import styles from "@/styles/global";
 import { Feather } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import {
@@ -8,11 +13,6 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
-import TasksList from "@/components/TasksList";
-import { Colors } from "@/constants/colors";
-import { TaskStatus } from "@/enums/task-status";
-import { useTasks } from "@/hooks/useTasks";
-import styles from "@/styles/styles";
 
 export default function Tasks() {
     const { status } = useLocalSearchParams();
