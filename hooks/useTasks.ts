@@ -1,4 +1,4 @@
-import { Task } from "@/data/task";
+import { sampleTasks, Task } from "@/data/task";
 import { TaskStatus } from "@/enums/task-status";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 import 'react-native-get-random-values';
@@ -30,7 +30,7 @@ interface TasksProviderProps {
  */
 export const TasksProvider = ({ children }: TasksProviderProps) => {
     // In-memory storage as required
-    const [tasks, setTasks] = useState<Task[]>([]);
+    const [tasks, setTasks] = useState<Task[]>(sampleTasks);
 
     // Filter tasks by their current status
     const getTasksByStatus = (status: TaskStatus) => {
@@ -69,7 +69,16 @@ export const TasksProvider = ({ children }: TasksProviderProps) => {
 
     // Sort tasks by when they were last updated (oldest first)
     const getSortedTasks = () => {
-        return tasks.sort((a, b) => a.updatedAt.getTime() - b.updatedAt.getTime());
+        return tasks.sort((a, b) => {
+          const aInProgress = a.status === TaskStatus.IN_PROGRESS;
+          const bInProgress = b.status === TaskStatus.IN_PROGRESS;
+      
+          if (aInProgress && !bInProgress) return -1; // a comes first
+          if (!aInProgress && bInProgress) return 1;  // b comes first
+      
+          // If both are the same status group, sort by createdAt
+          return b.createdAt.getTime() - a.createdAt.getTime();
+        });
     };
 
     const value: TasksContextType = {

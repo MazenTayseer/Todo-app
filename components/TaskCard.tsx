@@ -35,6 +35,17 @@ export default function TaskCard({
     });
   }
 
+  // handling toggle task status
+  const handleToggleTaskStatus = () => {
+    const newStatus = isCompleted ? TaskStatus.IN_PROGRESS : TaskStatus.COMPLETED;
+    toggleTaskStatus(task.id, newStatus);
+    Toast.show({
+      text1: `Task Status updated to ${newStatus.toLowerCase()} ✅`,
+      type: 'success',
+      position: 'bottom',
+    });
+  }
+
   // handling delete task while swiping right on the card
   // Code follows documentation
   const renderRightActions = (prog: SharedValue<number>, drag: SharedValue<number>) => {
@@ -67,29 +78,30 @@ export default function TaskCard({
         overshootRight={false}
       >
         <View style={tasksStyles.taskCard}>
-        <View>
-          <Text
-            style={[
-              tasksStyles.taskTitle,
-              isCompleted && { textDecorationLine: "line-through", color: Colors.primaryMuted },
-            ]}
-          >
-            {task.title}
-          </Text>
-          <Text
-            style={[
-              tasksStyles.taskDescription,
-              isCompleted && { color: Colors.secondaryMuted },
-            ]}
-          >
-            {task.description}
-          </Text>
-        </View>
-        <View style={tasksStyles.taskActions}>
-          <TouchableOpacity onPress={() => {
-            const newStatus = isCompleted ? TaskStatus.IN_PROGRESS : TaskStatus.COMPLETED;
-            toggleTaskStatus(task.id, newStatus);
-          }}>
+          <View style={tasksStyles.taskContent}>
+            <Text
+              style={[
+                tasksStyles.taskTitle,
+                isCompleted && { textDecorationLine: "line-through", color: Colors.primaryMuted },
+              ]}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {task.title}
+            </Text>
+            <Text
+              style={[
+                tasksStyles.taskDescription,
+                isCompleted && { color: Colors.secondaryMuted },
+              ]}
+              numberOfLines={2}
+              ellipsizeMode="tail"
+            >
+              {task.description}
+            </Text>
+          </View>
+          <View style={tasksStyles.taskActions}>
+          <TouchableOpacity onPress={handleToggleTaskStatus}>
             <Feather
               name={isCompleted ? "check-circle" : "circle"}
               size={24}
