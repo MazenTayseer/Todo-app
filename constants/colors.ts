@@ -1,3 +1,4 @@
+// Static colors for the app
 export const Colors = {
     base: "#FFFFFF",
     primary: "#212121",

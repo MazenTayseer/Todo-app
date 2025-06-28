@@ -2,14 +2,14 @@ import { Colors } from "@/constants/colors";
 import { Task } from "@/data/task";
 import { TaskStatus } from "@/enums/task-status";
 import { useTasks } from "@/hooks/useTasks";
-import styles from "@/styles/global";
+import tasksStyles from "@/styles/tasks";
 import { Feather } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import Reanimated, {
-    SharedValue,
-    useAnimatedStyle,
+  SharedValue,
+  useAnimatedStyle,
 } from 'react-native-reanimated';
 import Toast from "react-native-toast-message";
 
@@ -20,9 +20,12 @@ type TaskCardProps = {
 export default function TaskCard({
   task,
 }: TaskCardProps) {
+  // checking if task is completed
   const isCompleted = task.status === TaskStatus.COMPLETED;
+  // fetching toggleTaskStatus and deleteTask from useTasks hook
   const { toggleTaskStatus, deleteTask } = useTasks();
 
+  // handling delete task
   const handleDeleteTask = () => {
     deleteTask(task.id);
     Toast.show({
@@ -32,6 +35,8 @@ export default function TaskCard({
     });
   }
 
+  // handling delete task while swiping right on the card
+  // Code follows documentation
   const renderRightActions = (prog: SharedValue<number>, drag: SharedValue<number>) => {
     const styleAnimation = useAnimatedStyle(() => {  
       return {
@@ -42,7 +47,7 @@ export default function TaskCard({
     return (
       <Reanimated.View style={styleAnimation}>
         <TouchableOpacity 
-          style={styles.deleteActionContainer}
+          style={tasksStyles.deleteTaskContainer}
           onPress={handleDeleteTask}
           activeOpacity={0.7}
         >
@@ -52,6 +57,8 @@ export default function TaskCard({
     );
   }
 
+  // task card component (Swipeable for best UX, for deletion of task)
+  // Code follows documentation
   return (
     <GestureHandlerRootView>
       <ReanimatedSwipeable
@@ -59,11 +66,11 @@ export default function TaskCard({
         overshootLeft={false}
         overshootRight={false}
       >
-        <View style={styles.taskCard}>
+        <View style={tasksStyles.taskCard}>
         <View>
           <Text
             style={[
-              styles.taskTitle,
+              tasksStyles.taskTitle,
               isCompleted && { textDecorationLine: "line-through", color: Colors.primaryMuted },
             ]}
           >
@@ -71,14 +78,14 @@ export default function TaskCard({
           </Text>
           <Text
             style={[
-              styles.taskDescription,
+              tasksStyles.taskDescription,
               isCompleted && { color: Colors.secondaryMuted },
             ]}
           >
             {task.description}
           </Text>
         </View>
-        <View style={styles.taskActions}>
+        <View style={tasksStyles.taskActions}>
           <TouchableOpacity onPress={() => {
             const newStatus = isCompleted ? TaskStatus.IN_PROGRESS : TaskStatus.COMPLETED;
             toggleTaskStatus(task.id, newStatus);

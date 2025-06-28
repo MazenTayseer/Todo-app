@@ -5,7 +5,9 @@ import { Colors } from '@/constants/colors';
 import { UserData } from '@/data/user-data';
 import { TaskStatus } from '@/enums/task-status';
 import { useTasks } from '@/hooks/useTasks';
-import styles from "@/styles/global";
+import globalStyles from "@/styles/global";
+import statusStyles from '@/styles/status-cards';
+import tasksStyles from '@/styles/tasks';
 import { router } from 'expo-router';
 import {
     SafeAreaView,
@@ -15,27 +17,31 @@ import {
     View,
 } from "react-native";
 
-
+/**
+ * Main dashboard screen - shows task overview and recent tasks
+ * Central hub for navigating to other parts of the app
+ */
 export default function Index() {
+    // Dummy user data
     const userData: UserData = {
         name: 'Mazen',
     };
+    
+    // fetching tasks and related functions from useTasks hook
     const { 
-        tasks,
         getTasksByStatus,
         getSortedTasks,
     } = useTasks();
     
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={globalStyles.container}>
             <StatusBar barStyle="dark-content" backgroundColor={Colors.base} />
             
-            {/* Header */}
-            <View style={styles.header}>
+            {/* Top header with greeting and add button */}
+            <View style={globalStyles.header}>
                 <View>
-                    <Text style={styles.greeting}>Hi, {userData.name} 👋</Text>
-                    <Text style={styles.subtitle}>Let's get things done today.</Text>
-                    {/* Custom hook for task management */}
+                    <Text style={globalStyles.greeting}>Hi, {userData.name} 👋</Text>
+                    <Text style={globalStyles.subtitle}>Let&apos;s get things done today.</Text>
                 </View>
                 <View>
                     <CustomButton 
@@ -48,12 +54,12 @@ export default function Index() {
 
             <ScrollView 
                 style={{ flex: 1 }}
-                contentContainerStyle={styles.scrollContent}
+                contentContainerStyle={globalStyles.scrollContent}
                 showsVerticalScrollIndicator={false}
             >
-                {/* Status Cards */}
-                <View style={styles.statusCardsContainer}>
-                    <View style={styles.statusCardsRow}>
+                {/* Status overview cards - tap to filter tasks by status */}
+                <View style={statusStyles.statusCardsContainer}>
+                    <View style={statusStyles.statusCardsRow}>
                         <StatusCard
                             status={TaskStatus.IN_PROGRESS}
                             count={getTasksByStatus(TaskStatus.IN_PROGRESS).length}
@@ -69,9 +75,9 @@ export default function Index() {
                     </View>
                 </View>
 
-                {/* Recent Tasks Section */}
-                <View style={styles.tasksSection}>
-                    <Text style={styles.sectionTitle}>Recent Tasks</Text>
+                {/* List of all tasks sorted by last update */}
+                <View style={tasksStyles.tasksSection}>
+                    <Text style={globalStyles.sectionTitle}>Recent Tasks</Text>
                     <TasksList tasks={getSortedTasks()} />
                 </View>
             </ScrollView>

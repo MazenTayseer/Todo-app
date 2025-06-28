@@ -1,6 +1,6 @@
 import { Colors } from '@/constants/colors';
 import { TaskStatus } from '@/enums/task-status';
-import styles from '@/styles/global';
+import statusStyles from '@/styles/status-cards';
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React from 'react';
@@ -14,20 +14,21 @@ type StatusCardProps = {
 };
 
 const StatusCard = ({ status, count, backgroundColor, iconName }: StatusCardProps) => {
+  // Status card component that goes to tasks screen with status as param
   return (
     <TouchableOpacity 
-      style={[styles.statusCard, { backgroundColor }]} 
+      style={[statusStyles.statusCard, { backgroundColor }]} 
       onPress={() => router.push({
         pathname: '/tasks',
         params: { status }
       })}
     >
-        <View style={styles.statusIcon}>
+        <View style={statusStyles.statusIcon}>
             <Feather name={iconName} size={24} color={Colors.base} />
         </View>
         <View>
-            <Text style={styles.statusTitle}>{status}</Text>
-            <Text style={styles.statusCount}>{count} Tasks</Text>
+            <Text style={statusStyles.statusTitle}>{status}</Text>
+            <Text style={statusStyles.statusCount}>{count} Tasks</Text>
         </View>
     </TouchableOpacity>
   );

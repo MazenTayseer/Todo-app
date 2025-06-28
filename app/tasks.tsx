@@ -2,7 +2,8 @@ import TasksList from "@/components/TasksList";
 import { Colors } from "@/constants/colors";
 import { TaskStatus } from "@/enums/task-status";
 import { useTasks } from "@/hooks/useTasks";
-import styles from "@/styles/global";
+import globalStyles from "@/styles/global";
+import tasksStyles from "@/styles/tasks";
 import { Feather } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import {
@@ -15,14 +16,17 @@ import {
 } from "react-native";
 
 export default function Tasks() {
+    // fetching status from URL params
     const { status } = useLocalSearchParams();
+    // fetching tasks and related functions from useTasks hook
     const { getTasksByStatus } = useTasks();
+    // fetching tasks by status
     const tasks = getTasksByStatus(status as TaskStatus);
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={globalStyles.container}>
             <StatusBar barStyle="dark-content" backgroundColor={Colors.base} />
 
-            <View style={styles.headerWithBackButton}>
+            <View style={globalStyles.headerWithBackButton}>
                 <View>
                     <TouchableOpacity onPress={() => router.back()}>
                         <Feather
@@ -33,18 +37,18 @@ export default function Tasks() {
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <Text style={styles.greeting}>
+                    <Text style={globalStyles.greeting}>
                         {status} Tasks
                         {status === TaskStatus.COMPLETED && ' ✅'}
                         {status === TaskStatus.IN_PROGRESS && ' ⏳'}
                     </Text>
-                    <Text style={styles.subtitle}>
+                    <Text style={globalStyles.subtitle}>
                         {tasks.length} {status} tasks
                     </Text>
                 </View>
             </View>
 
-            <ScrollView style={styles.tasksSection}>
+            <ScrollView style={tasksStyles.tasksSection}>
                 <TasksList tasks={tasks} />
             </ScrollView>
         </SafeAreaView>

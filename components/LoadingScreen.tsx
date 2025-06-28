@@ -2,10 +2,10 @@ import { loadingScreenStyles } from '@/styles/loading-screen';
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import Animated, {
-    runOnJS,
-    useAnimatedStyle,
-    useSharedValue,
-    withTiming
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming
 } from 'react-native-reanimated';
 
 interface LoadingScreenProps {
@@ -13,19 +13,23 @@ interface LoadingScreenProps {
 }
 
 export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
+  // Starting
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.8);
 
+  // Animated opacity and scale
   useEffect(() => {
     opacity.value = withTiming(1, { duration: 800 });
     scale.value = withTiming(1, { duration: 800 });
 
+    // Timer to hide loading screen
     const timer = setTimeout(() => {
       opacity.value = withTiming(0, { duration: 600 }, (finished) => {
         if (finished) {
           runOnJS(onLoadingComplete)();
         }
       });
+      // Scale to make an animation effect
       scale.value = withTiming(1.1, { duration: 600 });
     }, 1500);
 

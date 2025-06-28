@@ -15,7 +15,7 @@ A modern, feature-rich todo application built with React Native and Expo. This a
 - **Personalized Greeting**: Welcome message with user name
 - **Form Validation**: Input validation with helpful error messages
 - **Toast Notifications**: Success feedback when tasks are created
-- **Responsive Design**: Clean, modern UI that works across devices
+- **Responsive Design**: Clean, modern UI
 - **Navigation**: Smooth navigation between screens with back button support
 
 ## 🛠 Setup Instructions
@@ -48,8 +48,8 @@ A modern, feature-rich todo application built with React Native and Expo. This a
 1. **Home Screen**: View your task overview with status cards and recent tasks
 2. **Add Task**: Tap the "Add Task" button to create a new task
 3. **Fill Details**: Enter a title and description for your task
-4. **Manage Tasks**: Use the task cards to mark tasks as complete or delete them
-5. **Track Progress**: Monitor your progress with the status overview cards
+4. **Recent Tasks**: Shows your recent added tasks, either in progress or completed, sorted by updated at time
+5. **Status Cards**: Shows number of tasks in each category, you can press them in view tasks in each category separately
 
 ## 📚 Third-Party Libraries
 

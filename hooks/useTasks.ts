@@ -1,9 +1,13 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid';
 import { Task } from "@/data/task";
 import { TaskStatus } from "@/enums/task-status";
+import React, { createContext, ReactNode, useContext, useState } from "react";
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 
+/**
+ * Task management context interface
+ * Provides all the functionality needed to work with tasks throughout the app
+ */
 interface TasksContextType {
     tasks: Task[];
     getTasksByStatus: (status: TaskStatus) => Task[];
@@ -13,19 +17,27 @@ interface TasksContextType {
     getSortedTasks: () => Task[];
 }
 
+// Create context
 const TasksContext = createContext<TasksContextType | undefined>(undefined);
 
 interface TasksProviderProps {
     children: ReactNode;
 }
 
+/**
+ * Main task management provider
+ * Wraps the app to provide task state and operations to all components
+ */
 export const TasksProvider = ({ children }: TasksProviderProps) => {
+    // In-memory storage as required
     const [tasks, setTasks] = useState<Task[]>([]);
 
+    // Filter tasks by their current status
     const getTasksByStatus = (status: TaskStatus) => {
         return tasks.filter(task => task.status === status);
     };
 
+    // Create a new task - always starts as "In Progress"
     const createTask = (title: string, description: string) => {
         const now = new Date();
         const newTask: Task = {
@@ -39,6 +51,7 @@ export const TasksProvider = ({ children }: TasksProviderProps) => {
         setTasks(prevTasks => [...prevTasks, newTask]);
     };
 
+    // Toggle task between completed and in-progress states
     const toggleTaskStatus = (taskId: string, status: TaskStatus) => {
         setTasks(prevTasks => 
             prevTasks.map(task => 
@@ -49,10 +62,12 @@ export const TasksProvider = ({ children }: TasksProviderProps) => {
         );
     };
 
+    // Remove task completely from the list
     const deleteTask = (taskId: string) => {
         setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
     };
 
+    // Sort tasks by when they were last updated (oldest first)
     const getSortedTasks = () => {
         return tasks.sort((a, b) => a.updatedAt.getTime() - b.updatedAt.getTime());
     };
@@ -69,6 +84,10 @@ export const TasksProvider = ({ children }: TasksProviderProps) => {
     return React.createElement(TasksContext.Provider, { value }, children);
 };
 
+/**
+ * Hook to access task management functionality
+ * Throws error if used outside of TasksProvider (helps catch setup mistakes)
+ */
 export const useTasks = (): TasksContextType => {
     const context = useContext(TasksContext);
     if (!context) {

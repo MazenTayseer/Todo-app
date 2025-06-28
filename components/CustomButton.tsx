@@ -1,5 +1,5 @@
 import { Colors } from "@/constants/colors";
-import styles from "@/styles/global";
+import globalStyles from "@/styles/global";
 import { Feather } from "@expo/vector-icons";
 import { Text, TouchableOpacity } from "react-native";
 
@@ -12,10 +12,11 @@ type CustomButtonProps = {
 export default function CustomButton(
     { title, onPress, icon }: CustomButtonProps
 ) {
+    // Custom button component with optional title and icon for all app
     return (
-        <TouchableOpacity style={styles.customButton} onPress={onPress}>
+        <TouchableOpacity style={globalStyles.customButton} onPress={onPress}>
             {icon && <Feather name={icon} size={20} color={Colors.base} />}
-            {title && <Text style={styles.customButtonText}>{title}</Text>}
+            {title && <Text style={globalStyles.customButtonText}>{title}</Text>}
         </TouchableOpacity>
     );
 }
